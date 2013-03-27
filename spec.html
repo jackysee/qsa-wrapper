@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>qsa-wrapper spec</title>
+	<script src="test/jasmine/jasmine.js"></script>
+	<script src="test/jasmine/jasmine-html.js"></script>
+	<link rel="stylesheet" href="test/jasmine/jasmine.css" media="all">
+	<!--src-->
+	<script type="text/javascript" src="src/qsa-wrapper.js"></script>
+
+	<!--spec-->
+	<script type="text/javascript" src="spec/qsa-wrapper_spec.js"></script>
+
+
+	<script type="text/javascript">
+	(function() {
+		var jasmineEnv = jasmine.getEnv();
+		jasmineEnv.updateInterval = 1000;
+
+		var htmlReporter = new jasmine.HtmlReporter();
+
+		jasmineEnv.addReporter(htmlReporter);
+
+		jasmineEnv.specFilter = function(spec) {
+			return htmlReporter.specFilter(spec);
+		};
+
+		var currentWindowOnload = window.onload;
+
+		window.onload = function() {
+			if (currentWindowOnload) {
+				currentWindowOnload();
+			}
+			execJasmine();
+		};
+
+		function execJasmine() {
+			jasmineEnv.execute();
+		}
+
+	})();
+	</script>
+</head>
+<body>
+
+</body>
+</html>
