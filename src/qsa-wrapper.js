@@ -1,11 +1,8 @@
 var QsaWrapper = {
-	slice: function(args){
-		return Array.prototype.slice.call(args);
-	},
 	wrap: function(inst, query, func){
 		return function(){
-			var args = QsaWrapper.slice(arguments);
-			[].forEach.call(query, function(node){
+			var args = Array.prototype.slice.call(arguments);
+			Array.prototype.forEach.call(query, function(node){
 				func.apply(node, args);
 			});
 			return inst;
